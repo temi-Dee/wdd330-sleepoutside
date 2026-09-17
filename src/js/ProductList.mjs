@@ -17,7 +17,7 @@ function productCardTemplate(product) {
             : "";
 
     return `<li class="product-card">
-        <a href="/product_pages/?product=${product.Id}">
+        <a href="${import.meta.env.BASE_URL}product_pages/?product=${product.Id}">
             <picture>
                 <source
                     media="(min-width: 940px)"

@@ -57,5 +57,7 @@ const headerElement = document.querySelector("#main-header");
 const footerElement = document.querySelector("#main-footer");
 renderWithTemplate(headerTemplate, headerElement);
 renderWithTemplate(footerTemplate, footerElement);
+headerElement.querySelector(".logo a").href = import.meta.env.BASE_URL;
+headerElement.querySelector(".cart a").href = `${import.meta.env.BASE_URL}cart/`;
 };
 

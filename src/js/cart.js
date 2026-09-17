@@ -20,7 +20,7 @@ function renderCartContents() {
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
-  <a href="/product_pages/?product=${item.Id}">
+  <a href="${import.meta.env.BASE_URL}product_pages/?product=${item.Id}">
             <picture>
                 <source
                     media="(min-width: 500px)"
@@ -31,7 +31,7 @@ function cartItemTemplate(item) {
                     alt="Image of ${item.Name}"
                 />
             </picture>
-  <a href="/product_pages/?product=${item.Id}">
+  <a href="${import.meta.env.BASE_URL}product_pages/?product=${item.Id}">
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>

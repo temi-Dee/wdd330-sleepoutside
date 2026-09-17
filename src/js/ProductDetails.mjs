@@ -51,7 +51,7 @@ function productDetailsTemplate(product) {
     sourceExtraLarge.srcset = product.Images.PrimaryExtraLarge;
 
     const productImage = document.querySelector("#productImage");
-    productImage.src = product.Images.PrimarySmall;
+    productImage.src = product.Images.PrimaryLarge;
     productImage.alt = product.NameWithoutBrand;
     const euroPrice = new Intl.NumberFormat("de-DE",
         {

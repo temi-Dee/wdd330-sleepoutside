@@ -70,7 +70,10 @@ export default class ProductList {
         // );
 
         this.renderList(list);
-        const categoryName = this.category.charAt(0).toUpperCase() + this.category.slice(1);
+        const categoryName = this.category
+            .split("-")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
         document.querySelector(".title").textContent = categoryName;
 
         // BC- BREADCRUMB

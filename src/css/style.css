@@ -188,6 +188,40 @@ button {
   color: var(--dark-grey);
 }
 
+/* Category cards grid on home page */
+.category-cards {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.category-cards a.category-card {
+  text-decoration: none;
+  color: var(--dark-grey);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-cards a.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 2px 4px 10px var(--light-grey);
+}
+
+.category-cards a.category-card svg {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 0.5rem;
+}
+
+.category-cards a.category-card h3 {
+  font-size: 1em;
+  text-align: center;
+}
+
 /* Styles for product lists */
 .product-card,
 .category-card {

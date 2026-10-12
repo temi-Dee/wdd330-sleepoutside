@@ -2,16 +2,16 @@
 
 import { posterUrl } from './api.js';
 
-// Cached genre map: { id → name }
-let genreMap = {};
+// Genre map inlined — no fetch needed
+const genreMap = {
+  28: 'Action', 12: 'Adventure', 16: 'Animation', 35: 'Comedy',
+  80: 'Crime', 99: 'Documentary', 18: 'Drama', 10751: 'Family',
+  14: 'Fantasy', 36: 'History', 27: 'Horror', 10402: 'Music',
+  9648: 'Mystery', 10749: 'Romance', 878: 'Science Fiction',
+  53: 'Thriller', 10752: 'War', 37: 'Western',
+};
 
-/** Load genres.json and cache as a lookup map. */
-async function loadGenreMap() {
-  if (Object.keys(genreMap).length) return;
-  const res = await fetch('/data/genres.json');
-  const list = await res.json();
-  list.forEach(({ id, name }) => { genreMap[id] = name; });
-}
+function loadGenreMap() { /* already loaded */ }
 
 /** Convert an array of genre_ids to a readable comma-separated string. */
 export function genreIdsToNames(ids = []) {
@@ -19,8 +19,7 @@ export function genreIdsToNames(ids = []) {
 }
 
 /** Populate a genre <select> element from genres.json. */
-export async function populateGenres(selectEl) {
-  await loadGenreMap();
+export function populateGenres(selectEl) {
   Object.entries(genreMap).forEach(([id, name]) => {
     const opt = document.createElement('option');
     opt.value = id;
@@ -34,7 +33,6 @@ export async function populateGenres(selectEl) {
  * All API-sourced text is set via textContent — never innerHTML.
  */
 export async function createMovieCard(movie, { showAdd = true, showRemove = false } = {}) {
-  await loadGenreMap();
   const { id, title, release_date, vote_average, poster_path, genre_ids = [] } = movie;
   const year   = release_date?.slice(0, 4) ?? '—';
   const score  = vote_average ? vote_average.toFixed(1) : 'N/A';

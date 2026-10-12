@@ -1,14 +1,14 @@
-// js/api.js — all network calls; keys loaded from /data/config.json
+// js/api.js — all network calls
 
-const CONFIG_URL = '/data/config.json';
-let cfg = null;
+const cfg = {
+  tmdbBaseUrl:   'https://api.themoviedb.org/3',
+  tmdbImageBase: 'https://image.tmdb.org/t/p/w500',
+  omdbBaseUrl:   'https://www.omdbapi.com',
+  tmdbApiKey:    'aa73666a1217d43c21e2aab52ee2a6b2',
+  omdbApiKey:    '626f1291',
+};
 
-async function getConfig() {
-  if (!cfg) {
-    const res = await fetch(CONFIG_URL);
-    if (!res.ok) throw new Error('Could not load app config.');
-    cfg = await res.json();
-  }
+function getConfig() {
   return cfg;
 }
 
@@ -28,7 +28,7 @@ export async function searchMovies({
   query = '', genre = '', minRating = '', decade = '',
   sort = 'popularity.desc', page = 1,
 } = {}) {
-  const { tmdbBaseUrl, tmdbApiKey } = await getConfig();
+  const { tmdbBaseUrl, tmdbApiKey } = getConfig();
 
   const params = new URLSearchParams({
     api_key: tmdbApiKey,
@@ -69,7 +69,7 @@ export async function getMovieDetails(movieId) {
   if (!movieId || !/^\d+$/.test(String(movieId))) {
     throw new Error('Invalid movie ID.');
   }
-  const { tmdbBaseUrl, tmdbApiKey } = await getConfig();
+  const { tmdbBaseUrl, tmdbApiKey } = getConfig();
   return apiFetch(
     `${tmdbBaseUrl}/movie/${movieId}?api_key=${tmdbApiKey}&append_to_response=external_ids`
   );
@@ -81,7 +81,7 @@ export async function getMovieDetails(movieId) {
  */
 export async function getOmdbData(imdbId) {
   if (!imdbId) return null;
-  const { omdbBaseUrl, omdbApiKey } = await getConfig();
+  const { omdbBaseUrl, omdbApiKey } = getConfig();
   const data = await apiFetch(`${omdbBaseUrl}/?i=${imdbId}&apikey=${omdbApiKey}`).catch(() => null);
   if (!data || data.Response === 'False') return null;
   return {
@@ -107,7 +107,7 @@ export async function fetchFullDetails(movieId) {
 /** Resolve a TMDB poster_path to a full URL, or return a placeholder. */
 export async function posterUrl(posterPath) {
   if (!posterPath) return 'https://placehold.co/342x513/162032/F4F4F0?text=No+Poster';
-  const { tmdbImageBase } = await getConfig();
+  const { tmdbImageBase } = getConfig();
   return `${tmdbImageBase}${posterPath}`;
 }
 

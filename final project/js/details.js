@@ -1,7 +1,7 @@
 // js/details.js — details.html controller
 
 import { fetchFullDetails, posterUrl } from './api.js';
-import { addPick, isPicked } from './watchlist.js';
+import { addPick, isPicked, updateCounter } from './watchlist.js';
 
 const container = document.getElementById('detail-container');
 
@@ -154,6 +154,8 @@ if (backLink) {
 }
 
 // ── Init ─────────────────────────────────────────────────────
+updateCounter();
+
 const rawId = new URLSearchParams(window.location.search).get('id');
 
 if (!rawId || !/^\d+$/.test(rawId)) {

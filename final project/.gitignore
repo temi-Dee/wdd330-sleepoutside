@@ -1,0 +1,9 @@
+# API keys — never commit the local config
+js/config.local.js
+data/config.json
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+*.log

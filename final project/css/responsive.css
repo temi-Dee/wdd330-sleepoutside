@@ -1,0 +1,79 @@
+/* ── Mobile base (< 480px): single column ──────────────────── */
+.movie-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Ensure all buttons meet 44px touch target */
+.btn-primary, .btn-secondary, .btn-danger, .btn-add {
+  min-height: 44px;
+}
+
+/* Filters stack vertically on small screens */
+.filters {
+  flex-direction: column;
+}
+
+.filters select {
+  width: 100%;
+  min-height: 44px;
+}
+
+/* Detail page: poster stacks above text */
+.detail-container {
+  grid-template-columns: 1fr;
+}
+.detail-poster { max-width: 200px; margin: 0 auto; }
+.detail-info h2 { font-size: 2rem; }
+
+/* ── Small tablet: 480px+ ──────────────────────────────────── */
+@media (min-width: 480px) {
+  .movie-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filters {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .filters select {
+    width: auto;
+    flex: 1 1 140px;
+  }
+}
+
+/* ── Tablet: 768px+ ────────────────────────────────────────── */
+@media (min-width: 768px) {
+  .movie-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .filters {
+    flex-wrap: nowrap;
+  }
+
+  .filters select {
+    flex: 1;
+  }
+
+  /* Detail page: side-by-side at tablet */
+  .detail-container {
+    grid-template-columns: 240px 1fr;
+  }
+
+  .detail-poster { max-width: 100%; margin: 0; }
+  .detail-info h2 { font-size: 2.5rem; }
+}
+
+/* ── Desktop: 1024px+ ──────────────────────────────────────── */
+@media (min-width: 1024px) {
+  .movie-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .detail-container {
+    grid-template-columns: 280px 1fr;
+  }
+
+  .detail-info h2 { font-size: 3rem; }
+}

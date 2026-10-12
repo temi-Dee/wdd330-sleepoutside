@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Details – Movie Night Finder</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1 class="logo">🎬 Movie Night Finder</h1>
+    <nav aria-label="Site navigation">
+      <a href="index.html" class="nav-link">← Back to Search</a>
+      <a href="index.html#watchlist-section" class="nav-link">
+        Tonight's Picks <span id="picks-count" aria-live="polite">(0)</span>
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <div
+      id="detail-container"
+      class="detail-container"
+      aria-live="polite"
+      aria-atomic="false"
+    >
+      <p class="status-msg">Loading…</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Data from <a href="https://www.themoviedb.org" target="_blank" rel="noopener">TMDB</a> &amp; <a href="https://www.omdbapi.com" target="_blank" rel="noopener">OMDb</a></p>
+  </footer>
+
+  <script type="module" src="js/details.js"></script>
+</body>
+</html>

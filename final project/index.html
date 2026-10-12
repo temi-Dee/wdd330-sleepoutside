@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Night Finder</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1 class="logo">🎬 Movie Night Finder</h1>
+    <nav aria-label="Site navigation">
+      <a href="index.html" class="nav-link active">Search</a>
+      <a href="#watchlist-section" class="nav-link">
+        Tonight's Picks <span id="picks-count" aria-live="polite">(0)</span>
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Search & Filters -->
+    <section class="search-section" aria-label="Search and filter movies">
+      <form id="search-form" role="search">
+        <label for="search-input" class="sr-only">Search movies</label>
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Search movies…"
+          aria-label="Search movies"
+          autocomplete="off"
+        />
+        <button type="submit" class="btn-primary">Search</button>
+        <button type="button" id="surprise-btn" class="btn-secondary">🎲 Surprise Me</button>
+      </form>
+
+      <div class="filters" id="filters" role="group" aria-label="Filter and sort options">
+        <label for="filter-genre" class="sr-only">Genre</label>
+        <select id="filter-genre" aria-label="Filter by genre">
+          <option value="">All Genres</option>
+        </select>
+
+        <label for="filter-rating" class="sr-only">Minimum rating</label>
+        <select id="filter-rating" aria-label="Minimum rating">
+          <option value="">Any Rating</option>
+          <option value="9">9+</option>
+          <option value="8">8+</option>
+          <option value="7">7+</option>
+          <option value="6">6+</option>
+        </select>
+
+        <label for="filter-year" class="sr-only">Decade</label>
+        <select id="filter-year" aria-label="Filter by decade">
+          <option value="">Any Year</option>
+          <option value="2020">2020s</option>
+          <option value="2010">2010s</option>
+          <option value="2000">2000s</option>
+          <option value="1990">1990s</option>
+          <option value="1980">1980s</option>
+        </select>
+
+        <label for="sort-by" class="sr-only">Sort by</label>
+        <select id="sort-by" aria-label="Sort results">
+          <option value="popularity.desc">Most Popular</option>
+          <option value="vote_average.desc">Highest Rated</option>
+          <option value="release_date.desc">Newest</option>
+          <option value="release_date.asc">Oldest</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="results-section" aria-label="Search results">
+      <p id="results-status" class="status-msg" aria-live="polite" aria-atomic="true"></p>
+      <div id="movie-grid" class="movie-grid"></div>
+      <button type="button" id="load-more-btn" class="btn-secondary hidden">Load More</button>
+    </section>
+
+    <!-- Tonight's Picks -->
+    <section id="watchlist-section" class="watchlist-section" aria-label="Tonight's Picks shortlist">
+      <h2>Tonight's Picks</h2>
+      <p id="watchlist-empty" class="status-msg" aria-live="polite">No picks yet — add some movies!</p>
+      <div id="watchlist-grid" class="movie-grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Data from <a href="https://www.themoviedb.org" target="_blank" rel="noopener">TMDB</a> &amp; <a href="https://www.omdbapi.com" target="_blank" rel="noopener">OMDb</a></p>
+  </footer>
+
+  <script type="module" src="js/search.js"></script>
+</body>
+</html>

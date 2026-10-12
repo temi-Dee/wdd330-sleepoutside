@@ -1,4 +1,4 @@
-const checkoutUrl = "https://wdd330.herokuapp.com/checkout";
+const baseURL = import.meta.env.VITE_SERVER_URL;
 
 async function convertToJson(response) {
   const jsonResponse = await response.json();
@@ -10,7 +10,7 @@ async function convertToJson(response) {
 
 export default class ExternalServices {
   async checkout(order) {
-    const response = await fetch(checkoutUrl, {
+    const response = await fetch(`${baseURL}checkout`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(order),
